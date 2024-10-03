@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'optemiz/temptool',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '95834417ddafb988c579c11ea2ca05cf809b527f',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'appsero/client' => array(
+            'pretty_version' => 'v2.0.2',
+            'version' => '2.0.2.0',
+            'reference' => 'b61c3ab21df4d44f805ee9476f9d880f8370a36b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../appsero/client',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'optemiz/plugin-tracker' => array(
+            'pretty_version' => '1.0.3',
+            'version' => '1.0.3.0',
+            'reference' => '03a25037562913bd1014754b766df864400f6b3b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../optemiz/plugin-tracker',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'optemiz/temptool' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '95834417ddafb988c579c11ea2ca05cf809b527f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);
