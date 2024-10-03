@@ -1,0 +1,1 @@
+# plugins-current-template-name
