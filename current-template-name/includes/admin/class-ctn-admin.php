@@ -81,8 +81,8 @@ class CTN_Admin {
      */
     public function ctn_add_admin_menu() {
         add_options_page(
-                'TempTool',
-                'TempTool',
+                'Pagely',
+                'Pagely',
                 'manage_options',
                 'current-template-name',
                 array( $this, 'ctn_options_page' ),
@@ -122,8 +122,8 @@ class CTN_Admin {
         <div class="wrap ctn-setting-wrap">
             <form action='options.php' method='post'>
                 <?php
-                echo sprintf('<h1>%s</h1>', esc_html__( "TempTool", "current-template-name" ) );
-                echo sprintf('<p>%s</p>', esc_html__( "This is where you can set TempTool options.", "current-template-name" ) );
+                echo sprintf('<h1>%s</h1>', esc_html__( "Pagely", "current-template-name" ) );
+                echo sprintf('<p>%s</p>', esc_html__( "This is where you can set Pagely options.", "current-template-name" ) );
                 ?>
                 <div class="tab-content">
                     <div class="tab-pane active" id="ctn-general">

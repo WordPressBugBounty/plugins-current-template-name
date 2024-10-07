@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: TempTool - Show Current Template Info
+ * Plugin Name: Pagely - Show Current Template Info
  * Description: Get current template file info on adminbar. It also shows Included file names of the template and wordpress current version and the current theme name.It just says to show current template, which template file you are still in.
- * Version: 1.1.14
+ * Version: 1.1.15
  * Author: Optemiz
  * Author URI: https://optemiz.com
  * Text Domain: current-template-name
@@ -21,7 +21,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  */
 function ctn_appsero_init_tracker() {
 
-	$client = new Appsero\Client( 'd7f959d5-133f-4228-8355-5d67093eaf6e', 'TempTool', __FILE__ );
+	$client = new Appsero\Client( 'd7f959d5-133f-4228-8355-5d67093eaf6e', 'Pagely', __FILE__ );
 
 	// Active insights
 	$client->insights()->init();
@@ -40,14 +40,14 @@ ctn_appsero_init_tracker();
 
 load_plugin_textdomain( 'current-template-name', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-Final Class TempTool {
+Final Class Pagely {
     /**
      * plugin version
      * 
      * @var string 
      * @since 1.0.0
      */
-    public $version = '1.1.14';
+    public $version = '1.1.15';
 
     /**
      * instance of 'current-template-name' plugin
@@ -75,7 +75,7 @@ Final Class TempTool {
     }
 
     /**
-     * Setup TempTool functions.
+     * Setup Pagely functions.
      *
      * @since 1.0.0
      * @return void
@@ -87,7 +87,7 @@ Final Class TempTool {
     }
 
     /**
-     * Define TempTool Constants.
+     * Define Pagely Constants.
      *
      * @since 1.0.0
      * @return void
@@ -292,7 +292,7 @@ Final Class TempTool {
  */
 if( ! function_exists('current_template_name') ) {
     function current_template_name() {
-        return TempTool::instance();
+        return Pagely::instance();
     }
 }
 

@@ -3,7 +3,7 @@
         'name' => 'optemiz/temptool',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '95834417ddafb988c579c11ea2ca05cf809b527f',
+        'reference' => 'fd82a77bf8e8e1bddbdd3ac6fa3e1e0a6b48ef9d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'optemiz/temptool' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '95834417ddafb988c579c11ea2ca05cf809b527f',
+            'reference' => 'fd82a77bf8e8e1bddbdd3ac6fa3e1e0a6b48ef9d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

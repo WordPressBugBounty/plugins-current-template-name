@@ -1,9 +1,9 @@
-=== TempTool  [Show Current Template Info] ===
+=== Pagely [Show Current Template Info] ===
 Contributors: optemiz, nayanchamp7
 Tags: adminbar, current, show current template, which, current file name, show current time, tool, show current time javascript, wordpress show current template, show current date, page, show, toolbar, filename, function, name, file
 Requires at least: 4.6
 Tested up to: 6.3
-Stable tag: 1.1.14
+Stable tag: 1.1.15
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -16,9 +16,11 @@ This plugin shows your current template file information. You can see the curren
 
 This plugin will reveal template of your current page and tell you which template you are still using.You may need to know which template file your page just loaded, it just says to WordPress show current template and current template loading time in seconds.
 
+### 📢 Pagely is the updated brand name of TempTool ###
+
 ##  🗒️  Simply just activate the plugin and see the results at adminbar. ##
 
-### ☀️ 'TempTool' provides following features:
+### ☀️ 'Pagely' provides following features:
 - Current Template Name
 - Current Template File Load Time
 - Current Page ID
@@ -27,9 +29,9 @@ This plugin will reveal template of your current page and tell you which templat
 - Included files name in current template
 - Custom Styling Options
 
-## 🎉 For Custom Styling, go through 'Settings > TempTool'. ##
+## 🎉 For Custom Styling, go through 'Settings > Pagely'. ##
 
-TempTool can be your daily handy tool. If you know the current file name then as a developer you can do whatever you want with the template location easily.
+Pagely can be your daily handy tool. If you know the current file name then as a developer you can do whatever you want with the template location easily.
 
 By File Load Time, you can be sure of how much time the file takes to load and whether it's faster or not.
 
@@ -51,7 +53,7 @@ This section describes how to install the plugin and get it working.
 
 = Why would I need this plugin? =
 
-With TempTool, you can find the information of your current template file and it will save your important times.
+With Pagely, you can find the information of your current template file and it will save your important times.
 
 = How to use this plugin? =
 
@@ -59,7 +61,7 @@ Just install it and see the front site's adminbar menu.
 
 = Can I change the styles? =
 
-Yeah, You can add custom styles from 'Settings > TempTool'.
+Yeah, You can add custom styles from 'Settings > Pagely'.
 
 = Does it work with any theme? =
 
@@ -67,10 +69,13 @@ Yeah, it should work with any theme.
 
 == Screenshots ==
 1. After custom styling.
-1. Custom styling feature, go through 'Settings > TempTool'.
-1. Admin bar view for TempTool plugin.
+1. Custom styling feature, go through 'Settings > Pagely'.
+1. Admin bar view for Pagely plugin.
 
 == Changelog ==
+
+= 1.1.15 - 24/08/2024 =
+* Added: 'Pagely' is the updated brand name of 'TempTool'.
 
 = 1.1.14 - 24/08/2024 =
 * Added: WordPress 6.6 version compatibility tested.
