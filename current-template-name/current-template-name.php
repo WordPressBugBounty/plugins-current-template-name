@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Pagely - Show Current Template Info
  * Description: Get current template file info on adminbar. It also shows Included file names of the template and wordpress current version and the current theme name.It just says to show current template, which template file you are still in.
- * Version: 1.1.15
- * Author: Optemiz
- * Author URI: https://optemiz.com
+ * Version: 1.1.16
+ * Author: HappyDevs
+ * Author URI: https://happydevs.net
  * Text Domain: current-template-name
  * Tested up to: 6.6
  */
@@ -47,7 +47,7 @@ Final Class Pagely {
      * @var string 
      * @since 1.0.0
      */
-    public $version = '1.1.15';
+    public $version = '1.1.16';
 
     /**
      * instance of 'current-template-name' plugin
