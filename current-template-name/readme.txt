@@ -2,8 +2,8 @@
 Contributors: happydevs, optemiz, nayanchamp7
 Tags: adminbar, current, show current template, which, current file name, show current time, tool, show current time javascript, wordpress show current template, show current date, page, show, toolbar, filename, function, name, file
 Requires at least: 4.6
-Tested up to: 6.3
-Stable tag: 1.1.16
+Tested up to: 6.8
+Stable tag: 1.2.0
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,9 @@ Yeah, it should work with any theme.
 1. Admin bar view for Pagely plugin.
 
 == Changelog ==
+
+= 1.2.0 - 27/06/2025 =
+* Added: WordPress 6.8 version compatibility added.
 
 = 1.1.16 - 05/11/2024 =
 * Fixing: Minor adjustment.

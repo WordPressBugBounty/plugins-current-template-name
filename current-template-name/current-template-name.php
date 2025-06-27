@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Pagely - Show Current Template Info
+ * Plugin Name: Pagely [Show Current Template Info]
  * Description: Get current template file info on adminbar. It also shows Included file names of the template and wordpress current version and the current theme name.It just says to show current template, which template file you are still in.
- * Version: 1.1.16
+ * Version: 1.2.0
  * Author: HappyDevs
  * Author URI: https://happydevs.net
  * Text Domain: current-template-name
- * Tested up to: 6.6
+ * Tested up to: 6.8
  */
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
