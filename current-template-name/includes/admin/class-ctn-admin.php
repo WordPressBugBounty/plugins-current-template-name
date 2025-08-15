@@ -94,24 +94,24 @@ class CTN_Admin {
      * Text Highlighter Color Callback.
      */
     function ctn_highlighter_color_render() {
-        $val = ( isset( $this->options['ctn_highlighter_color'] ) ) ? $this->options['ctn_highlighter_color'] : '';
-        echo '<input type="text" class="ctn_highlighter_color" name="ctn_general_settings[ctn_highlighter_color]" value="' . $val . '" />';
+        $val = ( isset( $this->options['ctn_highlighter_color'] ) ) ? $this->options['ctn_highlighter_color'] : '#6ef791';
+        echo '<input type="color" class="ctn_highlighter_color" name="ctn_general_settings[ctn_highlighter_color]" value="' . $val . '" />';
     }
 
     /**
      * Background Color Callback.
      */
     function ctn_bg_color_render() {
-        $val = ( isset( $this->options['ctn_bg_color'] ) ) ? $this->options['ctn_bg_color'] : '';
-        echo '<input type="text" class="ctn_bg_color" name="ctn_general_settings[ctn_bg_color]" value="' . $val . '" />';
+        $val = ( isset( $this->options['ctn_bg_color'] ) ) ? $this->options['ctn_bg_color'] : '#ffffff';
+        echo '<input type="color" class="ctn_bg_color" name="ctn_general_settings[ctn_bg_color]" value="' . $val . '" />';
     }
 
     /**
      * Highlighter Text Color Callback.
      */
     function ctn_bg_text_color_render() {
-        $val = ( isset( $this->options['ctn_text_color'] ) ) ? $this->options['ctn_text_color'] : '';
-        echo '<input type="text" class="ctn_text_color" name="ctn_general_settings[ctn_text_color]" value="' . $val . '" />';
+        $val = ( isset( $this->options['ctn_text_color'] ) ) ? $this->options['ctn_text_color'] : '#c3c4c7';
+        echo '<input type="color" class="ctn_text_color" name="ctn_general_settings[ctn_text_color]" value="' . $val . '" />';
     }
 
     /**

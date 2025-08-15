@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pagely [Show Current Template Info]
  * Description: Get current template file info on adminbar. It also shows Included file names of the template and wordpress current version and the current theme name.It just says to show current template, which template file you are still in.
- * Version: 1.2.0
+ * Version: 1.2.2
  * Author: HappyDevs
  * Author URI: https://happydevs.net
  * Text Domain: current-template-name
@@ -27,16 +27,14 @@ function ctn_appsero_init_tracker() {
 	$client->insights()->init();
 
     $opt_tracker             = new Optemiz\PluginTracker\Tracker();
-    $opt_tracker->api_url    = 'https://optemiz.com';
+    $opt_tracker->api_url    = 'https://happydevs.net';
     $opt_tracker->slug       = 'current-template-name';
     $opt_tracker->plugin_base_path = 'current-template-name/current-template-name.php';
     
     $opt_tracker->insights   = new Optemiz\PluginTracker\Insights();
     $opt_tracker->insights->client   = $client;
     $opt_tracker->execute();
-
 }
-ctn_appsero_init_tracker();
 
 load_plugin_textdomain( 'current-template-name', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
@@ -47,15 +45,7 @@ Final Class Pagely {
      * @var string 
      * @since 1.0.0
      */
-    public $version = '1.1.16';
-
-    /**
-     * instance of 'current-template-name' plugin
-     * 
-     * @var boolean
-     * @since 1.0.0
-     */
-    protected static $instance = null;
+    public $version = '1.2.2';
 
     /*
      * @var array $options options.
@@ -63,27 +53,40 @@ Final Class Pagely {
     public $options;
 
     /**
-     * Self Plugin Instant Function
+     * Class constructor
+     *
+     * Sets up all the appropriate hooks and functions
+     * within our plugin.
+     *
+     * @return void
      */
-    public static function instance() {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new self();
-            self::$instance->setup();
+    public function __construct() {
+        try {
+            $this->define_constants();
+            $this->includes();
+            $this->plugin_init();
+        } catch ( \Exception $e ) {
+            wp_trigger_error( __METHOD__, $e->getMessage() );
         }
 
-        return self::$instance;
+        do_action( 'pagely_loaded', $this );
     }
 
     /**
-     * Setup Pagely functions.
+     * Instance.
+     * 
+     * The instance will be created if it does not exist yet.
      *
+     * @return self The main instance.
      * @since 1.0.0
-     * @return void
      */
-    public function setup() {
-        $this->define_constants();
-        $this->includes();
-        $this->plugin_init();
+    public static function instance() {
+        static $instance = null;
+        if ( is_null( $instance ) ) {
+            $instance = new self();
+        }
+
+        return $instance;
     }
 
     /**
@@ -163,9 +166,6 @@ Final Class Pagely {
             }
             .ctn-admin-item {
                 color: <?php echo ( isset( $this->options['ctn_highlighter_color'] ) ) ? $this->options['ctn_highlighter_color'] : '#6ef791'; ?>;
-            }
-            .ab-submenu {
-
             }
         </style>
         <?php
@@ -284,17 +284,26 @@ Final Class Pagely {
     }
 }
 
-
 /**
  * Plugin Fire Function
  * 
  * @since 1.0.0
  */
-if( ! function_exists('current_template_name') ) {
-    function current_template_name() {
+if( ! function_exists('pagely') ) {
+    function pagely() {
         return Pagely::instance();
     }
 }
 
-//get set go!!!
-current_template_name();
+/**
+ * Load plugin
+ *
+ * @return void
+ */
+function ctn_plugins_loaded() {
+    ctn_appsero_init_tracker();
+
+    //get set go!!!
+    pagely();
+}
+add_action('plugins_loaded', 'ctn_plugins_loaded');
