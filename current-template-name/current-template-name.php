@@ -1,309 +1,112 @@
 <?php
 /**
- * Plugin Name: Pagely [Show Current Template Info]
- * Description: Get current template file info on adminbar. It also shows Included file names of the template and wordpress current version and the current theme name.It just says to show current template, which template file you are still in.
- * Version: 1.2.2
- * Author: HappyDevs
- * Author URI: https://happydevs.net
- * Text Domain: current-template-name
- * Tested up to: 6.8
+ * Pagely
+ *
+ * @category Pagely
+ * @package  HappyDevs
+ * @author   HappyDevs <support@happydevs.net>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.html GPL-3.0-or-later
+ * @link     https://happydevs.net
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Pagely [All in One Page Solutions]
+ * Plugin URI:        https://happydevs.net
+ * Description:       A simple plugin to manage all the page related things.
+ * Version:           1.3.0
+ * Requires at least: 6.3
+ * Requires PHP:      7.4
+ * Author:            HappyDevs
+ * Author URI:        https://happydevs.net
+ * Text Domain:       current-template-name
+ * License:           GPL v3 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
+ * Domain Path:       /languages
  */
 
-if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+/**
+ * Bootstrap the plugin.
+ */
 
+declare( strict_types=1 );
 
-require_once __DIR__ . '/vendor/autoload.php';
+defined('ABSPATH') || die('Keep Silent');
+
+use HappyDevs\Pagely\Pagely;
+
+if (! defined('PGLY_VERSION') ) {
+    define('PGLY_VERSION', '1.3.0');
+}
+
+if (! defined('PGLY_FILE') ) {
+    define('PGLY_FILE', __FILE__);
+}
+
+if (! defined('PGLY_PLUGIN_URL') ) {
+    define('PGLY_PLUGIN_URL', plugin_dir_url(__FILE__));
+}
+
+if (! defined('PGLY_PLUGIN_DIR') ) {
+    define('PGLY_PLUGIN_DIR', plugin_dir_path(__FILE__));
+}
+
+if (! defined('PGLY_PLUGIN_DIRNAME') ) {
+    define('PGLY_PLUGIN_DIRNAME', dirname(plugin_basename(__FILE__)));
+}
+
+if (! defined('PGLY_PLUGIN_BASENAME') ) {
+    define('PGLY_PLUGIN_BASENAME', plugin_basename(__FILE__));
+}
+
+// Include the Plugin class.
+if (! class_exists('HappyDevs\Pagely\Pagely') ) {
+    include_once plugin_dir_path(__FILE__) . '/includes/Pagely.php';
+}
 
 /**
  * Initialize the plugin tracker
  *
  * @return void
  */
-function ctn_appsero_init_tracker() {
-
-	$client = new Appsero\Client( 'd7f959d5-133f-4228-8355-5d67093eaf6e', 'Pagely', __FILE__ );
+function pgly_appsero_init_tracker() {
+	$client = new \Appsero\Client( 'd7f959d5-133f-4228-8355-5d67093eaf6e', 'Pagely', __FILE__ );
 
 	// Active insights
 	$client->insights()->init();
 
-    $opt_tracker             = new Optemiz\PluginTracker\Tracker();
+    $opt_tracker             = new \Optemiz\PluginTracker\Tracker();
     $opt_tracker->api_url    = 'https://happydevs.net';
     $opt_tracker->slug       = 'current-template-name';
     $opt_tracker->plugin_base_path = 'current-template-name/current-template-name.php';
     
-    $opt_tracker->insights   = new Optemiz\PluginTracker\Insights();
+    $opt_tracker->insights   = new \Optemiz\PluginTracker\Insights();
     $opt_tracker->insights->client   = $client;
     $opt_tracker->execute();
 }
 
-load_plugin_textdomain( 'current-template-name', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-
-Final Class Pagely {
-    /**
-     * plugin version
-     * 
-     * @var string 
-     * @since 1.0.0
-     */
-    public $version = '1.2.2';
-
-    /*
-     * @var array $options options.
-     */
-    public $options;
-
-    /**
-     * Class constructor
-     *
-     * Sets up all the appropriate hooks and functions
-     * within our plugin.
-     *
-     * @return void
-     */
-    public function __construct() {
-        try {
-            $this->define_constants();
-            $this->includes();
-            $this->plugin_init();
-        } catch ( \Exception $e ) {
-            wp_trigger_error( __METHOD__, $e->getMessage() );
-        }
-
-        do_action( 'pagely_loaded', $this );
-    }
-
-    /**
-     * Instance.
-     * 
-     * The instance will be created if it does not exist yet.
-     *
-     * @return self The main instance.
-     * @since 1.0.0
-     */
-    public static function instance() {
-        static $instance = null;
-        if ( is_null( $instance ) ) {
-            $instance = new self();
-        }
-
-        return $instance;
-    }
-
-    /**
-     * Define Pagely Constants.
-     *
-     * @since 1.0.0
-     * @return void
-     */
-    private function define_constants() {
-        define( 'CTN_VERSION', $this->version );
-        define( 'CTN_FILE', __FILE__ );
-        define( 'CTN_PATH', dirname( CTN_FILE ) );
-        define( 'CTN_INCLUDES', CTN_PATH . '/includes' );
-        define( 'CTN_URL', plugins_url( '', CTN_FILE ) );
-        define( 'CTN_ASSETS_URL', CTN_URL . '/assets' );
-    }
-
-    /**
-     * What type of request is this?
-     *
-     * @param string $type admin, ajax, cron or frontend.
-     * @return bool
-     */
-    private function is_request( $type ) {
-        switch ( $type ) {
-            case 'admin':
-                return is_admin();
-            case 'ajax':
-                return defined('DOING_AJAX');
-            case 'cron':
-                return defined('DOING_CRON');
-        }
-
-        return '';
-    }
-
-    /**
-     * Plugin include files
-     * 
-     * @since 1.1.0
-     */
-    public function includes() {
-        require_once( CTN_INCLUDES . '/class-ctn-theme-files.php' );
-		require_once( CTN_INCLUDES . '/class-ctn-suggest-plugins.php' );
-		require_once( CTN_INCLUDES . '/class-ctn-load-time.php' );
-
-        if ( $this->is_request('admin') ) {
-            include_once CTN_INCLUDES . '/admin/class-ctn-admin.php';
-        }
-    }
-
-    /**
-     *  Plugin Initialize Function
-     */
-    public function plugin_init() {
-        global $grabber;
-        $grabber = new CTN_Theme_Files();
-
-        add_action( 'template_include', array( $grabber, 'setup' ) );
-        add_action( "admin_bar_menu", array( $this, "ctn_admin_bar_menu" ), 9999 );
-		add_action( 'wp_enqueue_scripts', array( $this, "ctn_enqueue_scripts" ), 9999 );
-		add_action( 'wp_head', array( $this, "ctn_wp_head_callback" ), 9999 );
-
-        // Get registered option
-        $this->options = get_option( 'ctn_general_settings' );
-    }
-
-    public function ctn_wp_head_callback() {
-        ?>
-        <style>
-            #wp-admin-bar-ctn_adminbar_menu .ab-item {
-                background: <?php echo ( isset( $this->options['ctn_bg_color'] ) ) ? $this->options['ctn_bg_color'] : ''; ?>;
-                color: <?php echo ( isset( $this->options['ctn_text_color'] ) ) ? $this->options['ctn_text_color'] : ''; ?> !important;
-            }
-            #wp-admin-bar-ctn_adminbar_menu .ab-item .ctn-admin-item {
-                color: <?php echo ( isset( $this->options['ctn_highlighter_color'] ) ) ? $this->options['ctn_highlighter_color'] : '#6ef791'; ?>;
-            }
-            .ctn-admin-item {
-                color: <?php echo ( isset( $this->options['ctn_highlighter_color'] ) ) ? $this->options['ctn_highlighter_color'] : '#6ef791'; ?>;
-            }
-        </style>
-        <?php
-    }
-
-    /**
-     * Adminbar Callback
-     * 
-     * @since 1.0.0
-     */
-    public function ctn_admin_bar_menu($wp_admin_bar) {
-        //current template names
-        global $current_file_templates;
-        $current_file_templates = $GLOBALS['grabber']->grab();
-        
-        // do not return in admin dashboard
-        if( is_admin() ) {
-            return;
-        }
-
-        //current template name
-        global $template;
-        $current_template_name = basename( $template );
-
-        //active theme name
-        $active_theme		 = wp_get_theme();
-        $active_theme_name	 = $active_theme->Name;
-        
-        //get wp version
-        $wp_version = get_bloginfo( 'version' );
-
-        //get page id
-        $page_id = get_queried_object_id();
-
-        $template_file_text = sprintf( 'Current Template: <span class="ctn-admin-item">%s</span>', $current_template_name );
-        $theme_name_text = sprintf( 'Current Theme Name: <span class="ctn-admin-item ctn_current_theme">%s</span>', $active_theme_name );
-        $wp_version_text = sprintf( 'WP Version: <span class="ctn-admin-item ctn_wp_version">%s</span>', $wp_version );
-        $wp_theme_files_text = sprintf( 'Template Files: <span class="ctn-admin-item ctn_wp_version">%s</span>', $current_template_name );
-        $load_time_in_seconds = sprintf( 'Load Time: <span class="ctn-admin-item ctn_load_time_in_sec">%s seconds</span>', "1" );
-        $page_id = sprintf( 'Page ID: <span class="ctn-admin-item ctn_page_id">%s</span>', $page_id );
-
-        global $wp_admin_bar;
-		$args = array(
-			'id'	 => 'ctn_adminbar_menu',
-			'title'	 => $template_file_text
-		);
-
-        $wp_admin_bar->add_node( $args );
-
-        $wp_admin_bar->add_menu(
-            array(
-                'parent' => 'ctn_adminbar_menu',
-                'id'	 => 'ctn_adminbar_menu_load_time',
-                'title'	 => $load_time_in_seconds
-            )
-        );
-
-        $wp_admin_bar->add_menu(
-            array(
-                'parent' => 'ctn_adminbar_menu',
-                'id'	 => 'ctn_adminbar_menu_page_id',
-                'title'	 => $page_id
-            )
-        );
-        
-        $wp_admin_bar->add_menu( 
-                array(
-                    'parent' => 'ctn_adminbar_menu',
-                    'id'	 => 'ctn_adminbar_menu_theme_name',
-                    'title'	 => $theme_name_text
-                ) 
-        );
-
-        $wp_admin_bar->add_menu( 
-            array(
-                'parent' => 'ctn_adminbar_menu',
-                'id'	 => 'ctn_adminbar_menu_wp_version',
-                'title'	 => $wp_version_text
-            ) 
-        ); 
-        
-        $wp_admin_bar->add_menu( 
-            array(
-                'parent' => 'ctn_adminbar_menu',
-                'id'	 => 'ctn_adminbar_menu_theme_files',
-                'title'	 => $wp_theme_files_text
-            ) 
-        );
-        
-        // sub menu of template files
-        if( !empty( $GLOBALS['current_file_templates'] ) && is_array( $GLOBALS['current_file_templates'] ) ) {
-
-            foreach( $GLOBALS['current_file_templates'] as $template_file ) {
-                $wp_admin_bar->add_menu(
-                    array(
-                        'parent' => 'ctn_adminbar_menu_theme_files', 
-                        'title' => $template_file, 
-                        'id' => $template_file.  '_id'
-                    )
-                );
-            }
-        }
-
-    }
-
-    /**
-     * Enqueue Callback
-     */
-    public function ctn_enqueue_scripts() {
-        if( is_admin() ) {
-            return;
-        }
-
-        //styles
-		wp_enqueue_style( 'ctn-stylesheet', CTN_ASSETS_URL . "/css/ctn-style.css" );
-    }
-}
-
 /**
- * Plugin Fire Function
- * 
- * @since 1.0.0
- */
-if( ! function_exists('pagely') ) {
-    function pagely() {
-        return Pagely::instance();
-    }
-}
-
-/**
- * Load plugin
+ * The function that always returns the same instance to ensure only one instance exists in the global scope at any time.
  *
- * @return void
+ * @return Pagely
+ * @since  1.0.0
  */
-function ctn_plugins_loaded() {
-    ctn_appsero_init_tracker();
-
-    //get set go!!!
-    pagely();
+function pagely(): Pagely
+{
+    return Pagely::instance();
 }
-add_action('plugins_loaded', 'ctn_plugins_loaded');
+
+if (class_exists('HappyDevs\Pagely\Pagely') ) {
+    /**
+     * Plugin class init
+     *
+     * @return void
+     */
+    function pagely_init()
+    {
+        load_plugin_textdomain('current-template-name', false, plugin_dir_path(__FILE__) . 'languages');
+
+        pagely();
+        pgly_appsero_init_tracker();
+    }
+
+    add_action('plugins_loaded', 'pagely_init');
+}

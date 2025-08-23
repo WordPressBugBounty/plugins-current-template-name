@@ -4,15 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit45445595f6f405486ce573185e939532
+class ComposerStaticInit7607b6bbc12b4cf4f583f36bd1cc31c6
 {
     public static $prefixLengthsPsr4 = array (
         'O' => 
         array (
             'Optemiz\\PluginTracker\\' => 22,
         ),
+        'H' => 
+        array (
+            'HappyDevs\\Pagely\\' => 17,
+        ),
         'A' => 
         array (
+            'Automattic\\Jetpack\\Autoloader\\' => 30,
             'Appsero\\' => 8,
         ),
     );
@@ -21,6 +26,14 @@ class ComposerStaticInit45445595f6f405486ce573185e939532
         'Optemiz\\PluginTracker\\' => 
         array (
             0 => __DIR__ . '/..' . '/optemiz/plugin-tracker/includes',
+        ),
+        'HappyDevs\\Pagely\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes',
+        ),
+        'Automattic\\Jetpack\\Autoloader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src',
         ),
         'Appsero\\' => 
         array (
@@ -32,7 +45,20 @@ class ComposerStaticInit45445595f6f405486ce573185e939532
         'Appsero\\Client' => __DIR__ . '/..' . '/appsero/client/src/Client.php',
         'Appsero\\Insights' => __DIR__ . '/..' . '/appsero/client/src/Insights.php',
         'Appsero\\License' => __DIR__ . '/..' . '/appsero/client/src/License.php',
+        'Automattic\\Jetpack\\Autoloader\\AutoloadFileWriter' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadFileWriter.php',
+        'Automattic\\Jetpack\\Autoloader\\AutoloadGenerator' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadGenerator.php',
+        'Automattic\\Jetpack\\Autoloader\\AutoloadProcessor' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadProcessor.php',
+        'Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/CustomAutoloaderPlugin.php',
+        'Automattic\\Jetpack\\Autoloader\\ManifestGenerator' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/ManifestGenerator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'HappyDevs\\Pagely\\Admin' => __DIR__ . '/../..' . '/includes/Admin.php',
+        'HappyDevs\\Pagely\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php',
+        'HappyDevs\\Pagely\\CategoriesAndTags' => __DIR__ . '/../..' . '/includes/CategoriesAndTags.php',
+        'HappyDevs\\Pagely\\DuplicatePage' => __DIR__ . '/../..' . '/includes/DuplicatePage.php',
+        'HappyDevs\\Pagely\\Frontend' => __DIR__ . '/../..' . '/includes/Frontend.php',
+        'HappyDevs\\Pagely\\Pagely' => __DIR__ . '/../..' . '/includes/Pagely.php',
+        'HappyDevs\\Pagely\\Settings' => __DIR__ . '/../..' . '/includes/Settings.php',
+        'HappyDevs\\Pagely\\SuggestPlugins' => __DIR__ . '/../..' . '/includes/SuggestPlugins.php',
         'Optemiz\\PluginTracker\\Insights' => __DIR__ . '/..' . '/optemiz/plugin-tracker/includes/Insights.php',
         'Optemiz\\PluginTracker\\JsonWebToken' => __DIR__ . '/..' . '/optemiz/plugin-tracker/includes/JsonWebToken.php',
         'Optemiz\\PluginTracker\\Tracker' => __DIR__ . '/..' . '/optemiz/plugin-tracker/includes/Tracker.php',
@@ -41,9 +67,9 @@ class ComposerStaticInit45445595f6f405486ce573185e939532
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit45445595f6f405486ce573185e939532::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit45445595f6f405486ce573185e939532::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit45445595f6f405486ce573185e939532::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7607b6bbc12b4cf4f583f36bd1cc31c6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7607b6bbc12b4cf4f583f36bd1cc31c6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit7607b6bbc12b4cf4f583f36bd1cc31c6::$classMap;
 
         }, null, ClassLoader::class);
     }

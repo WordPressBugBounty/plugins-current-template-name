@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Optemiz\\PluginTracker\\' => array($vendorDir . '/optemiz/plugin-tracker/includes'),
+    'HappyDevs\\Pagely\\' => array($baseDir . '/includes'),
+    'Automattic\\Jetpack\\Autoloader\\' => array($vendorDir . '/automattic/jetpack-autoloader/src'),
     'Appsero\\' => array($vendorDir . '/appsero/client/src'),
 );

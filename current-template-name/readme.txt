@@ -1,36 +1,47 @@
-=== Pagely [Show Current Template Info] ===
+=== Duplicate Page, Hide Title, Custom CSS & JS, Exclude Search, Template Info - Pagely ===
 Contributors: happydevs, nayanchamp7
-Tags: adminbar, current, show current template, which, wordpress
+Tags: duplicate post, duplicate page, hide title, code editor, code snippets
 Tested up to: 6.8
-Stable tag: 1.2.2
+Stable tag: 1.3.0
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Show current template information and Template included filenames on top of the admin bar. Helpful WordPress tool to save times.
+Duplicate pages & posts, custom CSS & JS editor, hide page title, hide admin bar, exclude from search & archive, page categories & tags, notes, export/import, sitemap, PDF, protection features etc.
 
 == Description ==
 
-This plugin shows your current template file information. You can see the current template included files name in admin bar. Current theme name and WordPress version will also be seen at adminbar. For Developers and Users this plugin is a helping hand and time saver.
+Pagely – **All-in-One Page Solution** for WordPress
 
-This plugin will reveal template of your current page and tell you which template you are still using.You may need to know which template file your page just loaded, it just says to WordPress show current template and current template loading time in seconds.
+Pagely is the ultimate **All-in-One Page Solution** for WordPress, designed to give you complete control over your pages and posts. Whether you want to enhance page performance, manage visibility, or secure your content, Pagely brings all essential page management features into a single, easy-to-use plugin.
 
-##  🗒️  Simply just activate the plugin and see the results at adminbar. ##
+= FEATURES =
+✅ **Duplicate page & post**
+✅ Specific page **custom CSS & JS** editor
+✅ **Hide page title**
+✅ **Hide Admin Bar**
+✅ **Exclude page from search**
+✅ **Exclude page from archive**
+✅ **Page Category & Tag**
+✅ **Page Notes**
+✅ Current **Page ID**
+✅ **Current Template** Name
+✅ Current Template File **Load Time**
+✅ Current **Wordpress Version**
+✅ Included files name in **current template**
+✅ **Export/Import Page** [Upcoming]
+✅ **Sitemap (HTML Sitemap & XML Sitemap)** [Upcoming]
+✅ **Fraud Protection** [Upcoming]
+✅ **Password Protection** [Upcoming]
+✅ **Reading Progressbar** [Upcoming]
+✅ **Page view count** [Upcoming]
+✅ **Page to PDF** [Upcoming] 
+✅ **Page Redirection** [Upcoming]
+✅ **Content Protection** [Upcoming]
 
-### ☀️ 'Pagely' provides following features:
-- Current Template Name
-- Current Template File Load Time
-- Current Page ID
-- Current Theme Name
-- Current Wordpress Version
-- Included files name in current template
-- Custom Styling Options
+**Pagely** – the **All-in-One Page Solution** ensures your WordPress site is fully optimized, secure, and easy to manage. It’s perfect for developers, bloggers, and business websites that need full control over page management.
 
-## 🎉 For Custom Styling, go through 'Settings > Pagely'. ##
-
-Pagely can be your daily handy tool. If you know the current file name then as a developer you can do whatever you want with the template location easily.
-
-By File Load Time, you can be sure of how much time the file takes to load and whether it's faster or not.
+Take your WordPress pages to the next level with Pagely, the ultimate All-in-One Page Solution for creating, protecting, and optimizing your content.
 
 ## 💥 Want More??? ##
 
@@ -52,24 +63,42 @@ This section describes how to install the plugin and get it working.
 
 = Why would I need this plugin? =
 
-With Pagely, you can find the information of your current template file and it will save your important times.
+With Pagely, you can duplicate pages & posts, add custom CSS & JS per page, and hide page titles or admin bar, saving you time and improving content management.
 
-= How to use this plugin? =
+= Can I hide certain pages from search or archives? =
 
-Just install it and see the front site's adminbar menu.
+Yes! Pagely allows you to exclude pages from search and archive, giving you full control over your site’s visibility and organization.
 
-= Can I change the styles? =
+= How can I track template and page information? =
 
-Yeah, You can add custom styles from 'Settings > Pagely'.
+Pagely shows current page ID, template name, template file load time, WordPress version, and included files in your template, making debugging and optimization easier.
 
-= Does it work with any theme? =
+= Can I secure my pages or content? =
 
-Yeah, it should work with any theme.
+Absolutely! With Pagely, you can use password protection, fraud protection, content protection, and page redirection, keeping your pages safe and controlled.
+
+= Is there an option to export or convert pages? =
+
+Yes! Pagely supports export/import pages and will soon allow page to PDF, helping you manage and share your content efficiently.
 
 == Screenshots ==
-1. Page information in the Admin bar.
+1. Page specific custom CSS & JS editor.
+2. Hide Tite, Hide Admin Bar, Exclude Page from search and archive, Page Notes.
+3. Duplicate Page and Post.
+4. Page Categories and Tags.
+5. Page information in the Admin bar.
 
 == Changelog ==
+
+= 1.3.0 - 23/08/2025 =
+* Added: Specific page custom CSS & JS editor  - feature added.
+* Added: Duplicate page & post  - feature added.
+* Added: Hide page title - feature added.
+* Added: Hide Admin Bar  - feature added.
+* Added: Exclude page from search  - feature added.
+* Added: Exclude page from archive  - feature added.
+* Added: Page Category & Tag  - feature added.
+* Added: Page Notes  - feature added.
 
 = 1.2.2 - 15/08/2025 =
 * Enhancement: Enhancement and fine tuning.
