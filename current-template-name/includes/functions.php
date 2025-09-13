@@ -37,6 +37,26 @@ function pagely_render_settings_metabox( $post ) {
             'label' => 'Hide Page Title', 
             'desc' => 'If checked, the page title will not appear on the frontend.' 
         ],
+        'disable_gutenberg'  => [ 
+            'label' => 'Disable Gutenberg Editor', 
+            'desc' => 'If checked, gutenberg editor will be disabled for the current page.' 
+        ],
+        'disable_comments'      => [
+            'label' => 'Disable Comments', 
+            'desc' => 'Check to disable comment for the current page.' 
+        ],
+        'hide_header'      => [
+            'label' => 'Hide Header', 
+            'desc' => 'Check to hide header of the page.' 
+        ],
+        'hide_footer'      => [
+            'label' => 'Hide Footer', 
+            'desc' => 'Check to hide footer of the page.' 
+        ],
+        'hide_feature_image'      => [
+            'label' => 'Hide Feature Image', 
+            'desc' => 'Check to hide feature image.' 
+        ],
         'exclude_from_search' => [ 
             'label' => 'Exclude from Search', 
             'desc' => 'This page will not appear in WordPress search results.' 
@@ -48,6 +68,10 @@ function pagely_render_settings_metabox( $post ) {
         'hide_admin_bar'      => [ 
             'label' => 'Hide Admin Bar', 
             'desc' => 'Hide the admin bar for this page when viewed by logged-in users.' 
+        ],
+        'disable_feed'      => [
+            'label' => 'Disable Feed', 
+            'desc' => 'Check to disable feed for the current content.' 
         ],
     ];
 
@@ -87,6 +111,11 @@ function pagely_render_settings_metabox( $post ) {
     }
     echo '</div>';
 
+    $note = isset( $metas['custom_body_classes'] ) ? esc_textarea( $metas['custom_body_classes'] ) : '';
+    echo '<label for="pagely_custom_body_classes"><strong>'. __('Custom Body Classes', 'current-template-name') .'</strong></label>';
+    echo '<p style="margin-top:0;">'. __('Write comma seperated body classes.', 'current-template-name') .'</p>';
+    echo '<textarea id="pagely_custom_body_classes" placeholder="ex: hot-landing-page, woo-single-product" name="pagely_page_metas[custom_body_classes]" rows="4" style="width:100%;">'. $note .'</textarea>';
+    
     $note = isset( $metas['page_note'] ) ? esc_textarea( $metas['page_note'] ) : '';
     echo '<label for="pagely_page_note"><strong>'. __('Page Notes', 'current-template-name') .'</strong></label>';
     echo '<p style="margin-top:0;">'. __('Write some notes you may need later for the page.', 'current-template-name') .'</p>';
@@ -105,11 +134,18 @@ function pagely_save_settings_metabox( $post_id ) {
 
     if ( isset( $_POST['pagely_page_metas'] ) && is_array( $_POST['pagely_page_metas'] ) ) {
         $metas = [
+            'disable_gutenberg'   => ! empty($_POST['pagely_page_metas']['disable_gutenberg']) ? 1 : 0,
             'hide_page_title'     => ! empty($_POST['pagely_page_metas']['hide_page_title']) ? 1 : 0,
+            'hide_header'         => ! empty($_POST['pagely_page_metas']['hide_header']) ? 1 : 0,
+            'hide_footer'         => ! empty($_POST['pagely_page_metas']['hide_footer']) ? 1 : 0,
+            'hide_feature_image'  => ! empty($_POST['pagely_page_metas']['hide_feature_image']) ? 1 : 0,
             'exclude_from_search' => ! empty($_POST['pagely_page_metas']['exclude_from_search']) ? 1 : 0,
             'exclude_from_archive'=> ! empty($_POST['pagely_page_metas']['exclude_from_archive']) ? 1 : 0,
             'hide_admin_bar'      => ! empty($_POST['pagely_page_metas']['hide_admin_bar']) ? 1 : 0,
+            'disable_comments'    => ! empty($_POST['pagely_page_metas']['disable_comments']) ? 1 : 0,
+            'disable_feed'        => ! empty($_POST['pagely_page_metas']['disable_feed']) ? 1 : 0,
             'page_note'           => sanitize_textarea_field( $_POST['pagely_page_metas']['page_note'] ?? '' ),
+            'custom_body_classes' => sanitize_textarea_field( $_POST['pagely_page_metas']['custom_body_classes'] ?? '' ),
         ];
         update_post_meta( $post_id, 'pagely_page_metas', $metas );
     } else {
@@ -214,3 +250,20 @@ function pgly_compile_scss_to_css( $scss_code ) {
 		return '';
 	}
 }
+
+/**
+ * Disable Gutenberg editor for specific posts or post types.
+ */
+add_filter( 'use_block_editor_for_post', function( $use_block_editor, $post ) {
+    if ( ! $post instanceof WP_Post ) {
+        return $use_block_editor;
+    }
+
+    $metas = get_post_meta( $post->ID, 'pagely_page_metas', true );
+
+    if ( isset($metas['disable_gutenberg']) && $metas['disable_gutenberg'] === 1 ) {
+        return false;
+    }
+
+    return $use_block_editor;
+}, 10, 2 );

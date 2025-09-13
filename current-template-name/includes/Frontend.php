@@ -124,6 +124,30 @@ if (! class_exists('Frontend') ) {
 
             // load custom css, js or scss.
             add_action( 'wp_footer', array($this, 'print_custom_scripts'), 9999 );
+
+            // Hide header.
+            add_action( 'template_redirect', array( $this, 'maybe_hide_header_footer' ) );
+            add_filter( 'body_class', array( $this, 'hide_header_footer_body_class' ) );
+            add_action( 'wp_footer', array( $this, 'hide_header_footer_style' ) );
+
+            // Hide feature image.
+            add_filter( 'post_thumbnail_html', array($this, 'hide_feature_image'), 10, 5 );
+
+            // add custom body classes.
+            add_filter( 'body_class', array($this, 'custom_body_classes') );
+
+            // disable comments
+            add_filter( 'comments_open', array( $this, 'maybe_disable_comments' ), 10, 2 );
+            add_filter( 'pings_open', array( $this, 'maybe_disable_comments' ), 10, 2 );
+            add_filter( 'comments_array', array( $this, 'maybe_hide_existing_comments' ), 10, 2 );
+
+            // disable feed.
+            add_action( 'do_feed',        array( $this, 'maybe_disable_feed' ), 1 );
+            add_action( 'do_feed_rdf',    array( $this, 'maybe_disable_feed' ), 1 );
+            add_action( 'do_feed_rss',    array( $this, 'maybe_disable_feed' ), 1 );
+            add_action( 'do_feed_rss2',   array( $this, 'maybe_disable_feed' ), 1 );
+            add_action( 'do_feed_atom',   array( $this, 'maybe_disable_feed' ), 1 );
+
         }
 
         /**
@@ -438,6 +462,134 @@ if (! class_exists('Frontend') ) {
                     $js_content
                 );
             }
-        }        
+        }
+
+        /**
+         * Conditionally hide header and footer by removing hooks
+         */
+        public function maybe_hide_header_footer() {
+            if ( is_singular() ) {
+                $post_id = get_the_ID();
+                $metas   = get_post_meta( $post_id, 'pagely_page_metas', true );
+
+                // Hide header
+                if ( isset( $metas['hide_header'] ) && $metas['hide_header'] == 1 ) {
+                    add_filter( 'get_header', '__return_false' );
+                    remove_all_actions( 'get_header' );
+                }
+
+                // Hide footer
+                if ( isset( $metas['hide_footer'] ) && $metas['hide_footer'] == 1 ) {
+                    add_filter( 'get_footer', '__return_false' );
+                    remove_all_actions( 'get_footer' );
+                }
+            }
+        }
+
+        /**
+         * Add body classes to help hide via CSS if needed.
+         */
+        public function hide_header_footer_body_class( $classes ) {
+            if ( is_singular() ) {
+                $metas = get_post_meta( get_the_ID(), 'pagely_page_metas', true );
+
+                if ( isset( $metas['hide_header'] ) && $metas['hide_header'] == 1 ) {
+                    $classes[] = 'pagely-hide-header';
+                }
+
+                if ( isset( $metas['hide_footer'] ) && $metas['hide_footer'] == 1 ) {
+                    $classes[] = 'pagely-hide-footer';
+                }
+            }
+
+            return $classes;
+        }
+
+        /**
+         * Add internal style in footer.
+         */
+        public function hide_header_footer_style() {
+            ?>
+            <style type="text/css">
+                body.pagely-hide-header header,
+                body.pagely-hide-footer footer {
+                    display: none !important;
+                }
+            </style>
+            <?php
+        }
+
+        public function hide_feature_image( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+            $metas = get_post_meta( $post_id, 'pagely_page_metas', true );
+        
+            if ( isset( $metas['hide_feature_image'] ) && (int) $metas['hide_feature_image'] === 1 ) {
+                return '';
+            }
+        
+            return $html;
+        }
+
+        public function custom_body_classes( $classes ) {
+            $metas = get_post_meta( get_the_ID(), 'pagely_page_metas', true );
+
+            if ( isset( $metas['custom_body_classes'] ) && ! empty( $metas['custom_body_classes'] ) ) {
+                // Split by comma.
+                $custom_classes = explode( ',', $metas['custom_body_classes'] );
+
+                // Trim spaces from each class name.
+                $custom_classes = array_map( 'trim', $custom_classes );
+
+                // Merge with existing body classes.
+                $classes = array_merge( $classes, $custom_classes );
+            }
+
+            return $classes;
+        }
+
+        /**
+         * Disable comments if meta says so.
+         */
+        public function maybe_disable_comments( $open, $post_id ) {
+            $metas = get_post_meta( $post_id, 'pagely_page_metas', true );
+
+            if ( isset( $metas['disable_comments'] ) && $metas['disable_comments'] == 1 ) {
+                return false;
+            }
+
+            return $open;
+        }
+
+        /**
+         * Hide existing comments if comments disabled.
+         */
+        public function maybe_hide_existing_comments( $comments, $post_id ) {
+            $metas = get_post_meta( $post_id, 'pagely_page_metas', true );
+
+            if ( isset( $metas['disable_comments'] ) && $metas['disable_comments'] == 1 ) {
+                return [];
+            }
+
+            return $comments;
+        }
+
+        /**
+         * Disable feed for specific posts if meta is set.
+         */
+        public function maybe_disable_feed() {
+            if ( is_singular() ) {
+                global $post;
+
+                $metas = get_post_meta( $post->ID, 'pagely_page_metas', true );
+
+                if ( isset( $metas['disable_feed'] ) && $metas['disable_feed'] == 1 ) {
+                    // Kill the feed.
+                    wp_die( 
+                        __( 'Feed is disabled for this content.', 'pagely' ), 
+                        __( 'Feed Disabled', 'pagely' ), 
+                        array( 'response' => 403 ) 
+                    );
+                }
+            }
+        }
     }
 }

@@ -1,13 +1,13 @@
 === Duplicate Page, Hide Title, Custom CSS & JS, Exclude Search, Template Info - Pagely ===
 Contributors: happydevs, nayanchamp7
-Tags: duplicate post, duplicate page, hide title, code editor, code snippets
+Tags: duplicate post, duplicate page, disable gutenberg, disable comments, hide title
 Tested up to: 6.8
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Duplicate pages & posts, custom CSS & JS editor, hide page title, hide admin bar, exclude from search & archive, page categories & tags, notes, export/import, sitemap, PDF, protection features etc.
+Duplicate pages & posts, disable comments, disable gutenberg, custom CSS & JS editor, hide page title, , page categories & tags, notes, export/import, sitemap, PDF, protection features etc.
 
 == Description ==
 
@@ -18,7 +18,13 @@ Pagely is the ultimate **All-in-One Page Solution** for WordPress, designed to g
 = FEATURES =
 ✅ **Duplicate page & post**
 ✅ Specific page **custom CSS & JS** editor
-✅ **Hide page title**
+✅ **Disable Gutenberg** for specific page/post
+✅ **Disable Comments** for specific page/post
+✅ **Disable Feed** for specific page/post
+✅ **Hide Header**
+✅ **Hide Footer**
+✅ **Hide Page Title**
+✅ **Hide feature image**
 ✅ **Hide Admin Bar**
 ✅ **Exclude page from search**
 ✅ **Exclude page from archive**
@@ -29,6 +35,7 @@ Pagely is the ultimate **All-in-One Page Solution** for WordPress, designed to g
 ✅ Current Template File **Load Time**
 ✅ Current **Wordpress Version**
 ✅ Included files name in **current template**
+✅ **Custom body class** for specific page/post
 ✅ **Export/Import Page** [Upcoming]
 ✅ **Sitemap (HTML Sitemap & XML Sitemap)** [Upcoming]
 ✅ **Fraud Protection** [Upcoming]
@@ -82,13 +89,22 @@ Absolutely! With Pagely, you can use password protection, fraud protection, cont
 Yes! Pagely supports export/import pages and will soon allow page to PDF, helping you manage and share your content efficiently.
 
 == Screenshots ==
-1. Page specific custom CSS & JS editor.
-2. Hide Tite, Hide Admin Bar, Exclude Page from search and archive, Page Notes.
+1. 15+ Page modules including Disable comments, Disable gutenberg, Hide Header & Footer, Hide Tite, Exclude Page from search and archive, Page Notes etc.
+2. Page specific custom CSS & JS editor.
 3. Duplicate Page and Post.
 4. Page Categories and Tags.
 5. Page information in the Admin bar.
 
 == Changelog ==
+
+= 1.3.1 - 13/09/2025 =
+* Added: Disable gutenberg editor for specific page/post  - feature added.
+* Added: Disable comments for specific page/post - feature added.
+* Added: Disable feed for specific page/post - feature added.
+* Added: Hide header for specific page - feature added.
+* Added: Hide footer for specific page - feature added.
+* Added: Hide feature image for specific page/post - feature added.
+* Added: Custom body class - feature added.
 
 = 1.3.0 - 23/08/2025 =
 * Added: Specific page custom CSS & JS editor  - feature added.

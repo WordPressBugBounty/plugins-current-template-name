@@ -3,7 +3,7 @@
         'name' => 'happydevs/base-plugin',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'dbc318e37e881260e2bca8f735d3b93ed0160e64',
+        'reference' => '8f8c2469599c1fbfca1d7bc78d5e394c12d525ea',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'happydevs/base-plugin' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'dbc318e37e881260e2bca8f735d3b93ed0160e64',
+            'reference' => '8f8c2469599c1fbfca1d7bc78d5e394c12d525ea',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

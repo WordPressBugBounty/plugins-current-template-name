@@ -12,7 +12,7 @@
  * Plugin Name:       Pagely [All in One Page Solutions]
  * Plugin URI:        https://happydevs.net
  * Description:       A simple plugin to manage all the page related things.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            HappyDevs
@@ -34,7 +34,7 @@ defined('ABSPATH') || die('Keep Silent');
 use HappyDevs\Pagely\Pagely;
 
 if (! defined('PGLY_VERSION') ) {
-    define('PGLY_VERSION', '1.3.0');
+    define('PGLY_VERSION', '1.3.1');
 }
 
 if (! defined('PGLY_FILE') ) {
